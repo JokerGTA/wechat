@@ -88,7 +88,7 @@ export default {
             console.log('WebSocket连接打开失败，请检查！')
         });
         wx.onSocketClose(function(res) {
-            console.log('WebSocket 已关闭！');
+            console.log('WebSocket 已关闭！！');
             createConnect(); 
         });
     },
