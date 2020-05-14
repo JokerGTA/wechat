@@ -29,10 +29,10 @@
       "iconPath": "static/tabs/旅游(灰).png",
       "selectedIconPath": "static/tabs/旅游(蓝).png"
     },{
-      "text": "摆渡",
+      "text": "聊一聊",
       "pagePath": "pages/search/main",
-      "iconPath": "static/tabs/放大镜(暗).png",
-      "selectedIconPath": "static/tabs/放大镜(亮).png"
+      "iconPath": "static/tabs/聊天(灰).png",
+      "selectedIconPath": "static/tabs/聊天(蓝).png"
     }],    
     "position": "bottom"
   },
