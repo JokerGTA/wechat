@@ -1,20 +1,15 @@
 <template>
     <div class="main">
-        <div class="circular">
+        <div class="container">
+            <div class="circular">
             <open-data type="userAvatarUrl"></open-data>
-        </div>
-        <br/>
-        <div class="name">
-            <open-data type="userNickName"></open-data>
+            </div>
+            <br/>
+            <div class="name">
+                <open-data type="userNickName"></open-data>
+            </div>        
+            <button open-type="getUserInfo" @getuserinfo="getUserInfo" class="butt">授权登录</button>
         </div>        
-        <button open-type="getUserInfo" @getuserinfo="getUserInfo" >授权登录</button>
-         <!-- <van-button         
-        round
-        size="normal"
-        type="info"
-        @click="toChatroom"
-        color="linear-gradient(to right, #8BD18B,#156F12)"
-      ><span class="butt">　去聊天　</span></van-button> -->
     </div>
 </template>
 <script>
@@ -69,14 +64,16 @@ export default {
 </script>
 <style scoped>
 .main{
+    width:100vw;
+    height: 100vh;
     display: flex;
     flex-direction:column;
     justify-content: center;
     text-align: center;
+    background-color: #99CCCC;
 }
-.main img{   
-    width:100vw;
-    height: 100vh;
+.container{
+    margin-bottom: 120px;
 }
 .circular{    
     width: 80px;
@@ -92,6 +89,9 @@ export default {
     font-weight: bolder;
 }
 .butt{
-    color: whitesmoke;
+    background-color:#336666;
+    width: 100px;
+    color: #FFCC00;
+    font-weight: bolder;
 }
 </style>

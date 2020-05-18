@@ -11,8 +11,8 @@ const date = {
         //var weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
         //console.log(year, mon, date, weeks[week])
         //$("#time").html(year + "年" + mon + "月" + date + "日" + weeks[week]);
-        //return year + '-' + mon + '-' + date + ' ' + h + ':' + m + ':' + s;    
-        return  h + ':' + m + ':' + s;    
+        //return year + '-' + mon + '-' + date + ' ' + h + ':' + m + ':' + s;
+        return  mon + '-' + date + ' ' + h + ':' + m ;
     }
   }
   

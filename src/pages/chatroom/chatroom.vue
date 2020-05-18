@@ -2,7 +2,7 @@
     <div class="main">
         <van-notify id="van-notify" />
         <!-- <div class="chatMsgContainer" id="chatMsg" :scrollTop="scrollTop" > -->
-            <scroll-view scroll-y="true" :scroll-into-view="bottom" :style="chatScreenHeight">
+            <scroll-view scroll-y="true" :scroll-into-view="bottom" :style="'height:'+chatScreenHeight+'px;'" :scroll-with-animation="animation">
             <ul>
                 <li v-for="(item,index) in msgs" :key="index" v-html="item" class="chatli" :id="'item'+index"></li>
             </ul>
@@ -13,18 +13,18 @@
         round = true
         :overlay = "popoverlay"
         position="bottom"
-        custom-style="height:90px;background:#99CCFF"
+        :custom-style="'height:90px;background:#99CCFF;bottom:'+inputScreenHeight+'px;'"
         @close="onClose"
         >
-            <div class="chatContainer">
+            <div class="chatContainer" cursor-spacing="140">
                 
-                <input class="weui-input" v-model="mineMsg"/>
+                <input class="weui-input" v-model="mineMsg" :adjust-position="inputPostion" @focus="inputFocus" @blur="inputBlur" hold-keyboard="true"/>
 
                 <van-button
                 round
                 size="normal"
                 type="info"
-                @click="sendMsg"
+                @tap="sendMsg"
                 color="linear-gradient(to right, #3399CC, #003366)"
                 class="sendButton"
                 >发　送</van-button>
@@ -49,9 +49,13 @@ export default {
             popoverlay:false,
             mineMsg:"",
             msgs:[],
-            chatScreenHeight:"height:"+(wx.getSystemInfoSync().windowHeight*1-50)+"px",
+            chatScreenHeight:wx.getSystemInfoSync().windowHeight*1-50,
+            inputScreenHeight:0,
             scrollTop:0,
-            bottom:"item0"
+            bottom:"item0",
+            inputPostion:false,
+            keyboardHeight:0,
+            animation:true
         }
     },
     mounted() {
@@ -68,34 +72,37 @@ export default {
             }
         })
         this.initWebSocket();
+        //this.removeMsgSpace();
+        // this.getHistoryMsg();
     },
     destroyed() {
         closeWebSocket(); //离开路由之后断开websocket连接
     },
     methods: {
-      initWebSocket(){ //初始化weosocket
-        console.log("我进来了")
-        // createConnect();
-        wx.onSocketOpen(function(res){
-            console.log('WebSocket连接已打开！');
-            socketOpen = true;
-            for (var i = 0; i < socketMsgQueue.length; i++){
-                sendMessage(socketMsgQueue[i]);
-            }
-            socketMsgQueue = [];
-        });
-        wx.onSocketError(function(res){
-            console.log('WebSocket连接打开失败，请检查！')
-        });
-        wx.onSocketClose(function(res) {
-            console.log('WebSocket 已关闭！！');
-            createConnect(); 
-        });
-    },
-    onClose(e) {
-            this.popshow=false;
+        initWebSocket(){ //初始化weosocket
+            console.log("我进来了")
+            // createConnect(); // 创建websocket连接
+            wx.onSocketOpen(function(res){
+                console.log('WebSocket连接已打开！');
+                socketOpen = true;
+                for (var i = 0; i < socketMsgQueue.length; i++){
+                    sendMessage(socketMsgQueue[i]);
+                }
+                socketMsgQueue = [];
+            });
+            wx.onSocketError(function(res){
+                console.log('WebSocket连接打开失败，请检查！')
+            });
+            wx.onSocketClose(function(res) {
+                console.log('WebSocket 已关闭！！');
+                createConnect(); 
+            });
         },
-    sendMsg(){
+        onClose(e) {
+                this.popshow=false;
+            },
+        sendMsg(){
+            this.removeMsgSpace();
             if(this.mineMsg.length>0)
             {
                 let innerLeftHtml="<div style='display:flex;flex-direction:row'><div style='border-radius:10px;width:50px;height:50px;overflow:hidden;margin:10px'><img src='"+userPic+"' style='width:50px;height:50px;'/></div>"
@@ -106,9 +113,49 @@ export default {
                 this.msgs.push(innerLeftHtml);
                 this.msgs.push(innerRightHtml);
                 this.bottom = "item"+(this.msgs.length*1-1);
-                console.log(this.chatScreenHeight);
             }
             this.mineMsg="";
+        },
+        getHistoryMsg(){
+            this.$net
+                .get("https://www.93yz95rz.club/api/room/data",{})
+                .then(res => {
+                    for (let i = 0; i < res.oldMessage.length; i++) {
+                        console.log(res.oldMessage[i].msgContext);     
+                    }
+                });
+        },
+        inputFocus(e){
+            console.log("inputFocus");
+            if(e.mp.detail.height>0)
+            {
+                this.keyboardHeight = e.mp.detail.height;
+                this.inputScreenHeight += this.keyboardHeight;
+                this.chatScreenHeight -= this.keyboardHeight
+                this.msgs.unshift("");
+                this.bottom = "item"+(this.msgs.length*1-1);
+                // setTimeout(()=>{
+                //    this.msgs.splice(0,1);
+                // }, 1000);
+            }
+        },
+        inputBlur(){
+            console.log("inputBlur");
+            this.inputScreenHeight -= this.keyboardHeight*1;
+            this.chatScreenHeight += this.keyboardHeight
+        },
+        removeMsgSpace(){
+            for(var i=0;i<this.msgs.length;i++)
+            {
+                console.log(i);
+                if(this.msgs[i]=="")
+                {
+                    this.msgs.splice(i,1);
+                }
+                else{
+                    break;
+                }
+            }
         }
     },
 }

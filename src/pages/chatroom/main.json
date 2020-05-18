@@ -3,5 +3,6 @@
       "van-button": "../../../static/vant/button/index",
       "van-notify": "../../../static/vant/notify/index",
       "van-popup": "../../../static/vant/popup/index"
-    }
+    },
+    "navigationBarTitleText": "叨叨叨叨叨叨"
   }
