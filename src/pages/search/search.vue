@@ -1,5 +1,6 @@
 <template>
     <div class="main">
+        <img src="../../../static/images/diqiu.jpg" class="backimg">
         <div class="container">
             <div class="circular">
             <open-data type="userAvatarUrl"></open-data>
@@ -70,10 +71,19 @@ export default {
     flex-direction:column;
     justify-content: center;
     text-align: center;
-    background-color: #99CCCC;
+    position: relative;
+}
+.backimg{
+    z-index: -1;
+    width:100vw;
+    height: 100vh;
+    position: absolute;
 }
 .container{
-    margin-bottom: 120px;
+    position: absolute;
+    margin:auto;
+    width: 100vw;
+    z-index: 1;
 }
 .circular{    
     width: 80px;
@@ -89,9 +99,9 @@ export default {
     font-weight: bolder;
 }
 .butt{
-    background-color:#336666;
-    width: 100px;
-    color: #FFCC00;
+    background-color:#1D365A;
+    width: 150px;
+    color: #E0E8D9;
     font-weight: bolder;
 }
 </style>
