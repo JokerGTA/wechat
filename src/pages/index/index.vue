@@ -28,7 +28,7 @@
     
     <div class="big_nice">
       <div v-for="(item, index) in images2" :key="index" class="nice">
-        <van-image :src="item.url" width="100%" height="110%" fit="cover"/>      
+        <van-image :src="item.url" width="100%" height="110%" fit="cover"/>
       </div>    
     </div>
     

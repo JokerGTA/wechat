@@ -3,9 +3,10 @@
     "pages/index/main", 
     "pages/chatroom/main",       
     "pages/position/main",
-    "pages/search/main"
-    
+    "pages/search/main",
+    "pages/music/main"
   ],
+  "requiredBackgroundModes":["audio"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#99CC99",
@@ -33,6 +34,11 @@
       "pagePath": "pages/search/main",
       "iconPath": "static/tabs/聊天(灰).png",
       "selectedIconPath": "static/tabs/聊天(蓝).png"
+    },{
+      "text": "音乐盲盒",
+      "pagePath": "pages/music/main",
+      "iconPath": "static/tabs/音乐(灰).png",
+      "selectedIconPath": "static/tabs/音乐(蓝).png"
     }],    
     "position": "bottom"
   },

@@ -15,10 +15,11 @@ export default {
   // 这部分相当于原生小程序的 app.json
   config: {
     pages: [
-      'pages/index/main',
+      '^pages/index/main',
       'pages/position/main',
       "pages/search/main",
-      "^pages/chatroom/main"
+      "pages/chatroom/main",
+      "pages/music/main"
     ],
     window: {
       backgroundTextStyle: 'light',
