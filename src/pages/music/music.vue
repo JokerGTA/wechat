@@ -1,6 +1,11 @@
 <template>
   <div class="main">
-    <div v-for="(item, index) in musicList" :key="index" :class="{'playList selected':currentMusic==index,'playList unselect':currentMusic!=index}" @click="playMusic(index)">
+    <div
+      v-for="(item, index) in musicList"
+      :key="index"
+      :class="'playList '+{'selected':currentMusic==index,'unselect':currentMusic!=index}"
+      @click="playMusic(index)"
+    >
       <div class="playContainer">
         <div class="gifbody" v-show="currentMusic==index&&isPlay">
           <div class="music">
@@ -82,23 +87,21 @@ export default {
     };
   },
   methods: {
-    playMusic(index) {      
+    playMusic(index) {
       if (this.isPlay && index == this.currentMusic) {
         wx.pauseBackgroundAudio();
         this.isPlay = false;
-      } else  {
-        var musicObj = this.musicList;
+      } else {
         // var musicObj = JSON.parse(this.musicList);
-        var myAudio = wx.playBackgroundAudio({
-          dataUrl: musicObj[index].url,
-          title: musicObj[index].title,
-          coverImgUrl: musicObj[index].coverImgUrl
-          // complete:function(){
-          //     that.currentMusic +=1;
-          // }
+        // 监听音乐停止。
+        wx.onBackgroundAudioStop(() => {
+          if (index == 7) {
+            index = -1;
+          }
+          index += 1;
+          this.nextMusic(index);
         });
-        this.isPlay = true;
-        this.currentMusic = index;
+        this.nextMusic(index);
         // const innerAudioContext = wx.createInnerAudioContext();
 
         // innerAudioContext.autoplay = true;
@@ -121,6 +124,16 @@ export default {
         //     console.log(res.errCode)
         // });
       }
+    },
+    nextMusic(index) {
+      var musicObj = this.musicList;
+      wx.playBackgroundAudio({
+        dataUrl: musicObj[index].url,
+        title: musicObj[index].title,
+        coverImgUrl: musicObj[index].coverImgUrl
+      });
+      this.isPlay = true;
+      this.currentMusic = index;
     }
   }
 };
@@ -131,21 +144,21 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background-color:#FFFFCC;
+  background-color: #ffffcc;
 }
 .playList {
   height: 200px !important;
   width: 47% !important;
   margin: 2px 3px 0px 1px;
-  border-radius: 10px;  
+  border-radius: 10px;
   position: relative;
   text-align: center;
   overflow: hidden;
 }
-.unselect{
+.unselect {
   border: 3px solid orange;
 }
-.selected{
+.selected {
   border: 3px dashed #3ebfc0;
 }
 .playContainer {

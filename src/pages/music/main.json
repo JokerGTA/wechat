@@ -1,9 +1,9 @@
 {     
     "usingComponents": {   
       "van-button": "../../../static/vant/button/index",
-      "van-image": "../static/vant/image/index"
+      "van-image": "../../../static/vant/image/index"
     },
-    "navigationBarTitleText": "每月精选Music~~~",
+    "navigationBarTitleText": "每月精选Music Top8~~~",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#99CC99",    
     "navigationBarTextStyle": "black"

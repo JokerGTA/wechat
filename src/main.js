@@ -17,7 +17,7 @@ export default {
     pages: [
       '^pages/index/main',
       'pages/position/main',
-      "pages/search/main",
+      "pages/login/main",
       "pages/chatroom/main",
       "pages/music/main"
     ],

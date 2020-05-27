@@ -29,7 +29,7 @@ export default {
             //     key: 'AB4BZ-WOTKW-SX2R4-RHCYH-BU57J-DGB4F'
             // });
         },
-        onShow () {           
+        onShow () {
             // 调用接口
             qqmapsdk.search({
                 keyword: '酒店',
@@ -57,10 +57,11 @@ export default {
                         
                     }
                 }
-            });          
+            });
         }
     },
 }
+
 
 </script>
 <style scoped>

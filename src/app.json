@@ -1,10 +1,11 @@
 {
   "pages": [
-    "pages/index/main", 
-    "pages/chatroom/main",       
+    "pages/index/main",
+    "pages/chatroom/main",
     "pages/position/main",
-    "pages/search/main",
-    "pages/music/main"
+    "pages/login/main",
+    "pages/music/main",
+    "pages/baidu/main"
   ],
   "requiredBackgroundModes":["audio"],
   "window": {
@@ -31,7 +32,7 @@
       "selectedIconPath": "static/tabs/旅游(蓝).png"
     },{
       "text": "聊一聊",
-      "pagePath": "pages/search/main",
+      "pagePath": "pages/login/main",
       "iconPath": "static/tabs/聊天(灰).png",
       "selectedIconPath": "static/tabs/聊天(蓝).png"
     },{
@@ -39,7 +40,12 @@
       "pagePath": "pages/music/main",
       "iconPath": "static/tabs/音乐(灰).png",
       "selectedIconPath": "static/tabs/音乐(蓝).png"
-    }],    
+    },{
+      "text": "百度",
+      "pagePath": "pages/baidu/main",
+      "iconPath": "static/tabs/百度(灰).png",
+      "selectedIconPath": "static/tabs/百度(蓝).png"
+    }],
     "position": "bottom"
   },
   "plugins": {
