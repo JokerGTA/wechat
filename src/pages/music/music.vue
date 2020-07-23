@@ -34,94 +34,35 @@ export default {
       isPlay: false,
       isDisplay: false,
       currentMusic: -1,
-      musicList: [
-        {
-          url: "http://music.163.com/song/media/outer/url?id=526116053.mp3",
-          title: "50 Feet",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377411&di=444fc6702746811fd89ed035a3c5408c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201901%2F12%2F20190112164912_jvvdc.jpg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=1422778166.mp3",
-          title: "First Date",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377410&di=dead09c75d961016d6d6a9e4db0b61dd&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Ff1a64173a7a42f654e78b1e68ca81b73311c880b5d6e4-DdGcX3_fw658"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=1449406576.mp3",
-          title: "温泉",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377410&di=ed664a895fa916fa512f93f80ed810d6&imgtype=0&src=http%3A%2F%2Fpic4.zhimg.com%2Fv2-2d49e0e58de6200ca50d72f315b1a903_b.jpg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=1411975313.mp3",
-          title: "遇见你",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377410&di=f0b97d6ea19cf6e04f669394ce7139de&imgtype=0&src=http%3A%2F%2Ffile01.16sucai.com%2Fd%2Ffile%2F2014%2F0105%2Fc674444dc36392279489f9c6813b6de5.jpg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=1383729792.mp3",
-          title: "Better Now",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377409&di=e8c0a447a29377e60b515566952f4388&imgtype=0&src=http%3A%2F%2Fwww.06ps.com%2Fd%2Ffile%2F2017%2F0516%2F1494925549605.jpg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=1376075781.mp3",
-          title: "Stay The Night",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377408&di=0d4f067bb3f3121317808b2a6a3aa506&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201706%2F03%2F20170603164030_Aez5f.jpeg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=329418.mp3",
-          title: "属于自己",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406671719&di=2c41146f7d5b945d9fbe6652170b5a14&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201608%2F12%2F20160812180150_ZhFNP.thumb.700_0.jpeg"
-        },
-        {
-          url: "http://music.163.com/song/media/outer/url?id=431080055.mp3",
-          title: "虹の彼方に",
-          coverImgUrl:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590406377405&di=1ed57f745d7585a16e80659e3c464e3f&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201510%2F05%2F20151005030353_GSNea.jpeg"
-        }
-      ]
+      musicList: [],
     };
   },
   methods: {
     playMusic(index) {
+      var that = this;
       if (this.isPlay && index == this.currentMusic) {
         wx.pauseBackgroundAudio();
         this.isPlay = false;
       } else {
-        // var musicObj = JSON.parse(this.musicList);
-        // 监听音乐停止。
         wx.onBackgroundAudioStop(() => {
-          if (index == 7) {
-            index = -1;
-          }
-          index += 1;
-          this.nextMusic(index);
+          if (index == that.musicList.length-1) {
+              index = -1;
+            }
+            index += 1;
+            this.nextMusic(index);
         });
         this.nextMusic(index);
-        // const innerAudioContext = wx.createInnerAudioContext();
-
-        // innerAudioContext.autoplay = true;
-
-        // innerAudioContext.src = 'http://music.163.com/song/media/outer/url?id=515493921.mp3'
-        // innerAudioContext.onPlay(() => {
-        //     console.log('开始播放');
+        // wx.seekBackgroundAudio({
+        //     position: 180
         // });
-
-        // setTimeout(() => {
-        //     innerAudioContext.currentTime
-        //     innerAudioContext.onTimeUpdate(() => {
-        //     console.log(innerAudioContext.duration) //总时长
-        //     console.log(innerAudioContext.currentTime) //当前播放进度
-        //     })
-        // }, 500);
-
-        // innerAudioContext.onError((res) => {
-        //     console.log(res.errMsg)
-        //     console.log(res.errCode)
+        // console.log("跳转180");
+        // bam.onEnded(function(){
+        //   console.log("自然播放完成");
+        //     if (index == 7) {
+        //       index = -1;
+        //     }
+        //     index += 1;
+        //     that.nextMusic(index);
         // });
       }
     },
@@ -134,9 +75,35 @@ export default {
       });
       this.isPlay = true;
       this.currentMusic = index;
+    },
+    getBackMusicStatus()
+    {
+      console.log("我进来了");
+      var that = this;
+      wx.getBackgroundAudioPlayerState({
+        success (res) 
+        {
+          const status = res.status // 播放状态 0-暂停中 1-播放中 2-没有音乐播放
+          const dataUrl = res.dataUrl // 歌曲数据链接，只有在音乐播放中时返回
+          const currentPosition = res.currentPosition // 选定音频的播放位置（单位：s），只有在音乐播放中时返回
+          const duration = res.duration // 选定音频的长度（单位：s），只有在音乐播放中时返回
+          const downloadPercent = res.downloadPercent // 音频的下载进度百分比，只有在音乐播放中时返回
+          console.log(res);
+        }
+      });
     }
+  },
+  mounted(){
+    // 获取默认数据库的引用
+    const db = wx.cloud.database();
+    db.collection('music')
+      .get()
+      .then(res => {
+        this.musicList = res.data;
+      });
   }
 };
+
 </script>
 <style scoped>
 .main {

@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div>
         <web-view src="https://www.baidu.com" /> 
     </div>
 </template>
@@ -8,6 +8,3 @@ export default {
     
 }
 </script>
-<style scoped>
-
-</style>

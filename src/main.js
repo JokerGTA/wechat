@@ -19,7 +19,8 @@ export default {
       'pages/position/main',
       "pages/login/main",
       "pages/chatroom/main",
-      "pages/music/main"
+      "pages/music/main",
+      "pages/search/main"
     ],
     window: {
       backgroundTextStyle: 'light',

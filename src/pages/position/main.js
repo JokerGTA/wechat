@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import App from './position'
+import Vue from 'vue';
+import App from './position';
 
-const app = new Vue(App)
-app.$mount()
+const app = new Vue(App);
+app.$mount();
 
 

@@ -5,7 +5,7 @@
     "pages/position/main",
     "pages/login/main",
     "pages/music/main",
-    "pages/baidu/main"
+    "pages/search/main"
   ],
   "requiredBackgroundModes":["audio"],
   "window": {
@@ -41,8 +41,8 @@
       "iconPath": "static/tabs/音乐(灰).png",
       "selectedIconPath": "static/tabs/音乐(蓝).png"
     },{
-      "text": "百度",
-      "pagePath": "pages/baidu/main",
+      "text": "百度一下",
+      "pagePath": "pages/search/main",
       "iconPath": "static/tabs/百度(灰).png",
       "selectedIconPath": "static/tabs/百度(蓝).png"
     }],
