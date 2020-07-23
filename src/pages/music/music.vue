@@ -78,7 +78,7 @@ export default {
     },
     getBackMusicStatus()
     {
-      console.log("我进来了");
+      console.log("我进来了"); 
       var that = this;
       wx.getBackgroundAudioPlayerState({
         success (res) 
