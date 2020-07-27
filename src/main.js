@@ -20,7 +20,8 @@ export default {
       "pages/login/main",
       "pages/chatroom/main",
       "pages/music/main",
-      "pages/search/main"
+      "pages/search/main",
+      "pages/food_detail/main"
     ],
     window: {
       backgroundTextStyle: 'light',

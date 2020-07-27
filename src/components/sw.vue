@@ -48,10 +48,15 @@ export default {
       this.nextMargin = screenWidth - 235;
     },
     previewImg(lst, current) {
-      console.log(current);
+      var picUrls=[];
+      for(var i=0;i<lst.length;i++)
+      {
+        picUrls.push(lst[i].url);
+      }
+
       wx.previewImage({
         current: current, // 当前显示图片的http链接
-        urls: [current] // 需要预览的图片http链接列表
+        urls: picUrls // 需要预览的图片http链接列表
       });
     }
   },
