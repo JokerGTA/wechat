@@ -143,7 +143,8 @@ export default {
       // 获取默认数据库的引用
       const db = wx.cloud.database();
       db.collection('foods')
-      .get()
+      .orderBy('sort', 'asc')
+      .get()      
       .then(res => {
         this.foodsInfo = res.data;
       });

@@ -10,6 +10,7 @@
                 <open-data type="userNickName"></open-data>
             </div>        
             <button open-type="getUserInfo" @getuserinfo="getUserInfo" class="butt">授权登录</button>
+            <button open-type="getUserInfo" @getuserinfo="enterGame" class="buttG">进入游戏</button>
         </div>        
     </div>
 </template>
@@ -58,6 +59,11 @@ export default {
                     }
                 }
             });
+        },
+        enterGame(){
+            wx.navigateTo({
+                url: '../games/main'
+            }); 
         }
     },
 }
@@ -85,6 +91,7 @@ export default {
     margin:auto;
     width: 100vw;
     z-index: 1;
+    top:10%;
 }
 .circular{    
     width: 80px;
@@ -100,9 +107,16 @@ export default {
     font-weight: bolder;
 }
 .butt{
-    background-color:#1D365A;
+    background-color:#0099CC;
     width: 150px;
     color: #E0E8D9;
     font-weight: bolder;
+}
+.buttG{
+    background-color:#FF9900;
+    width: 150px;
+    color: #E0E8D9;
+    font-weight: bolder;
+    top:25px;
 }
 </style>

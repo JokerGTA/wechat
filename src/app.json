@@ -5,6 +5,7 @@
     "pages/position/main",
     "pages/login/main",
     "pages/music/main",
+    "pages/games/main",
     "pages/search/main",
     "pages/food_detail/main"
   ],
@@ -32,15 +33,15 @@
       "iconPath": "static/tabs/旅游(灰).png",
       "selectedIconPath": "static/tabs/旅游(蓝).png"
     },{
-      "text": "聊一聊",
-      "pagePath": "pages/login/main",
-      "iconPath": "static/tabs/聊天(灰).png",
-      "selectedIconPath": "static/tabs/聊天(蓝).png"
-    },{
       "text": "音乐盲盒",
       "pagePath": "pages/music/main",
       "iconPath": "static/tabs/音乐(灰).png",
       "selectedIconPath": "static/tabs/音乐(蓝).png"
+    },{
+      "text": "娱乐空间",
+      "pagePath": "pages/games/main",
+      "iconPath": "static/tabs/游戏(灰).png",
+      "selectedIconPath": "static/tabs/游戏(蓝).png"
     },{
       "text": "百度一下",
       "pagePath": "pages/search/main",
@@ -55,11 +56,11 @@
       "provider": "wx6aaf93c4435fa1c1"
     },
     "routePlan": {
-      "version": "1.0.5",
+      "version": "1.0.8",
       "provider": "wx50b5593e81dd937a"
     },
     "chooseLocation": {
-      "version": "1.0.2",
+      "version": "1.0.5",
       "provider": "wx76a9a06e5b4e693e"
     }
   },

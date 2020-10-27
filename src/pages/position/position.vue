@@ -90,7 +90,7 @@ export default {
     var ssslocation = chooseLocation.getLocation(); // 如果点击确认选点按钮，则返回选点结果对象，否则返回null
     if(ssslocation!=null)
     {
-        console.log(ssslocation);
+        console.log("heihei:"+ssslocation);
         endPointName =ssslocation.name;
         latitude = ssslocation.latitude;
         longitude = ssslocation.longitude;

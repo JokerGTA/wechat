@@ -1,0 +1,10 @@
+{     
+    "usingComponents": {   
+      "van-button": "../../../static/vant/button/index",
+      "van-image": "../../../static/vant/image/index"
+    },
+    "navigationBarTitleText": "Game!!!",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#99CC99",    
+    "navigationBarTextStyle": "black"
+  }
