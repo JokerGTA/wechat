@@ -13,7 +13,7 @@ export default {
             windowWidth:0,
             windowHeight:0,
             range:"",
-            picPath:'https://6465-dev-iu973-1301970690.tcb.qcloud.la/%E9%A3%9E%E6%9C%BA.png',
+            picPath:'https://6465-dev-iu973-1301970690.tcb.qcloud.la/%E9%A3%9E%E6%9C%BA%20(2).png',
             imgX:50,
             imgY:120,
             image:null,
@@ -27,9 +27,13 @@ export default {
         drawRect(x, y,image) {
             const size = 10*this.qdpr;
             this.ctx.clearRect(0, 0, this.windowWidth, this.windowHeight);
-            this.ctx.fillRect(x, y, 20, 20);
+            this.ctx.rect(0, 0, this.windowWidth, this.windowHeight);
+            this.ctx.fillStyle ='#003399';
+            this.ctx.fill();
+            this.ctx.fillStyle ='#CC0033';
+            this.ctx.fillRect(x, y, 20, 20); 
             this.ctx.drawImage(image,this.imgX, this.imgY, size, size);
-            
+           
             // console.log(this.imgX+"/"+x+","+this.imgY+"/"+y);
             if ((this.imgX > x-size  && this.imgX < x + 20) && (this.imgY > y-size && this.imgY < y + 20)) { // 飞机与矩形发生碰撞
                 clearInterval(this.interval);
@@ -60,18 +64,21 @@ export default {
             {
                 this.imgX=0;
             }
-
-            this.imgY =e.y = (e.y)/this.qdpr-this.fix;
-            if(e.y>this.bottom)
+            console.log(e.y)
+            this.imgY =e.y = (e.y)*0.3-this.fix;
+            if(e.y>120)
             {
-                this.imgY=this.bottom;
+                this.imgY=120;
             }
             else if(e.y<0)
             {
                 this.imgY=0;
             }
+            console.log(this.imgY)
         },
         recoveryCanvas(){
+            this.windowWidth = wx.getSystemInfoSync().windowWidth;
+            this.windowHeight =wx.getSystemInfoSync().windowHeight;
             var that = this;
             const dpr = wx.getSystemInfoSync().pixelRatio;
             this.qdpr =dpr;
@@ -79,25 +86,23 @@ export default {
             this.range = "width:"+300*dpr+"px;height:"+150*dpr+"px;"
             if(dpr<3)
             {
-                // this.qdpr =dpr*2;
-                this.fix = 0;
-                this.range = "width:"+300*dpr+"px;height:"+150*this.qdpr+100+"px;"
+                // this.qdpr =3.5;
+                this.fix = 80;
+                this.range = "width:"+1000+"px;height:"+700+"px;";
             }
-            this.windowWidth = wx.getSystemInfoSync().windowWidth;
-            this.windowHeight =wx.getSystemInfoSync().windowHeight;
             
-			
             const query = wx.createSelectorQuery();
             query.select('#myCanvas')
             .fields({ node: true, size: true }) 
             .exec((res) => {
                 this.canvas = res[0].node;
-            
                 let seal = this.canvas.createImage();
+
                 console.log(dpr+"/"+this.canvas.width+"/"+this.canvas.height);
                 console.log(dpr+"/"+this.windowWidth+"/"+this.windowHeight);
+                console.log(this.range);
+
                 this.ctx = this.canvas.getContext('2d');
-                
                 this.imgX =50-(10*this.qdpr - 20)/2 ;
                 this.bottom = 140-10*this.qdpr;
                 this.imgY = this.bottom;
